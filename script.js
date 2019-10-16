@@ -14,11 +14,10 @@ class Calendar {
   }
 
   createHtmlCalendar() {
-    let body = document.body;
     let weekDays = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'нд'];
     let calendarValues = Array(weekDays.indexOf(this.getStartWeekDay())).fill('');
     calendarValues = [...calendarValues, ...Array(this.getDaysInMonth()).keys(), ...Array(10).fill('')];
-    body.innerHTML = `
+    document.body.innerHTML = `
       <table class='table'>
         <tr> ${weekDays.map(day => `<th class='th'>${day}</th>`).join('')} </tr>
         <tr> ${calendarValues.splice(0, 7).map(dayNumber => `<td class='td'>${dayNumber === '' ? '' : dayNumber + 1}</td>`).join('')} </tr>
@@ -34,10 +33,8 @@ class Calendar {
       tr.innerHTML = ` ${calendarValues.splice(0, 7).map(dayNumber => `<td class='td'>${dayNumber === '' ? '' : dayNumber + 1}</td>`).join('')} `;
       table.appendChild(tr);
     }
-    console.log(calendarValues.splice(0, 7));
   }
 }
-
 
 let cal = new Calendar(2019, 12);
 cal.createHtmlCalendar();
