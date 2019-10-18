@@ -19,14 +19,12 @@ class Calendar {
     calendarValues = [...calendarValues, ...Array(this.getDaysInMonth()).keys(), ...Array(10).fill('')];
     document.body.innerHTML = `
       <table class='table'>
-        <tr> ${weekDays.map(day => `<th class='th'>${day}</th>`).join('')} </tr>
-        <tr> ${calendarValues.splice(0, 7).map(dayNumber => `<td class='td'>${dayNumber === '' ? '' : dayNumber + 1}</td>`).join('')} </tr>
-        <tr> ${calendarValues.splice(0, 7).map(dayNumber => `<td class='td'>${dayNumber === '' ? '' : dayNumber + 1}</td>`).join('')} </tr>
-        <tr> ${calendarValues.splice(0, 7).map(dayNumber => `<td class='td'>${dayNumber === '' ? '' : dayNumber + 1}</td>`).join('')} </tr>
-        <tr> ${calendarValues.splice(0, 7).map(dayNumber => `<td class='td'>${dayNumber === '' ? '' : dayNumber + 1}</td>`).join('')} </tr>
-        <tr> ${calendarValues.splice(0, 7).map(dayNumber => `<td class='td'>${dayNumber === '' ? '' : dayNumber + 1}</td>`).join('')} </tr>
+        <tr> ${weekDays.map(day => `<th class='th'>${day}</th>`).join('')} </tr>  
       </table>
     `;
+    for (let i = 0; i < 5; i++) {
+      document.querySelector('.table').innerHTML += `<tr> ${calendarValues.splice(0, 7).map(dayNumber => `<td class='td'>${dayNumber === '' ? '' : dayNumber + 1}</td>`).join('')} </tr>`
+    }
     if ((this.getStartWeekDay() == 'cб' || this.getStartWeekDay() == 'нд') && this.getDaysInMonth() >= 30) {
       let table = document.querySelector('.table');
       let tr = document.createElement('tr');
